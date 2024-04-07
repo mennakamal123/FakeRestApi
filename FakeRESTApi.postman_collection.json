@@ -1,0 +1,2180 @@
+{
+	"info": {
+		"_postman_id": "244bd3ca-5933-45e1-a276-eeb2a4ce8e76",
+		"name": "FakeRESTApi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26699027"
+	},
+	"item": [
+		{
+			"name": "Activities",
+			"item": [
+				{
+					"name": "Get Activities",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is less than 3000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"for (var i = 0; i < JSON.parse(responseBody).length; i++) {\r",
+									"    pm.test(\"1-|1- Check Response Body includes ID\", function () {\r",
+									"        pm.expect(JSON.parse(responseBody)[i]).to.have.property(\"id\");\r",
+									"    });}\r",
+									"for (var i = 0; i < JSON.parse(responseBody).length; i++) {\r",
+									"    pm.test(\"2-|1- Check Response Body includes Title\", function () {\r",
+									"       pm.expect(JSON.parse(responseBody)[i]).to.have.property(\"title\");\r",
+									"    });}\r",
+									"    for (var i = 0; i < JSON.parse(responseBody).length; i++) {\r",
+									"    pm.test(\"3-|1- Check Response Body includes dueDate\", function () {\r",
+									"        pm.expect(JSON.parse(responseBody)[i]).to.have.property(\"dueDate\");\r",
+									"    });}\r",
+									"    for (var i = 0; i < JSON.parse(responseBody).length; i++) {\r",
+									"    pm.test(\"4-|1- Check Response Body includes Completed\", function () {\r",
+									"        pm.expect(JSON.parse(responseBody)[i]).to.have.property(\"completed\");\r",
+									"    });}\r",
+									"for (var i = 0; i < JSON.parse(responseBody).length; i++) {\r",
+									"    pm.test(\"1-|2- Check ID DataType\", function () {\r",
+									"        pm.expect(JSON.parse(responseBody)[i].id).to.be.a('number');\r",
+									"    });}\r",
+									"for (var i = 0; i < JSON.parse(responseBody).length; i++) {\r",
+									"    pm.test(\"2-|2- Check Title DataType\", function () {\r",
+									"        pm.expect(JSON.parse(responseBody)[i].title).to.be.a('string');\r",
+									"    });}\r",
+									"    for (var i = 0; i < JSON.parse(responseBody).length; i++) { \r",
+									"    pm.test(\"3-|2- Check dueDate DataType\", function () {\r",
+									"        pm.expect(JSON.parse(responseBody)[i].dueDate).to.be.a('string');\r",
+									"    });}\r",
+									"      for (var i = 0; i < JSON.parse(responseBody).length; i++) {\r",
+									"    pm.test(\"4-|2- Check completed DataType\", function () {\r",
+									"        pm.expect(JSON.parse(responseBody)[i].completed).to.be.a('boolean');\r",
+									"    });}\r",
+									"for (var i = 0; i < JSON.parse(responseBody).length; i++) {\r",
+									"    pm.test(\"1-|3- Check ID not Null\", function () {\r",
+									"        pm.expect(JSON.parse(responseBody)[i].id).to.not.eql(null);\r",
+									"    });}\r",
+									"for (var i = 0; i < JSON.parse(responseBody).length; i++) {\r",
+									"    pm.test(\"2-|3- Check Title not Null\", function () {\r",
+									"       pm.expect(JSON.parse(responseBody)[i].title).to.not.eql(null);\r",
+									"    });}\r",
+									"    for (var i = 0; i < JSON.parse(responseBody).length; i++) {\r",
+									"    pm.test(\"3-|3- Check dueDate not Null\", function () {\r",
+									"        pm.expect(JSON.parse(responseBody)[i].dueDate).to.not.eql(null);\r",
+									"    });}\r",
+									"    for (var i = 0; i < JSON.parse(responseBody).length; i++) {\r",
+									"    pm.test(\"4-|3 Check Completed not Null\", function () {\r",
+									"        pm.expect(JSON.parse(responseBody)[i].completed).to.not.eql(null);\r",
+									"    });}\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/Activities",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Activities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create activity",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"ActivityId\", jsonData.id);\r",
+									"\r",
+									"pm.test(\"Response time is less than 3000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+									"\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);   \r",
+									"});\r",
+									" \r",
+									"pm.test(\"1-|1-Check ID DataType\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.id).to.be.a(\"number\");\r",
+									"});\r",
+									"pm.test(\"2-|1-Check Title DataType\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.title).to.be.a(\"string\");\r",
+									"});\r",
+									"pm.test(\"3-|1-Check dueDate DataType\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.dueDate).to.be.a(\"string\");\r",
+									"});\r",
+									"pm.test(\"4-|1-Check Completed DataType\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.completed).to.be.a(\"boolean\");\r",
+									"});\r",
+									"pm.test(\"1-|2-Check Response Body includes ID\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"id\");\r",
+									"});\r",
+									"pm.test(\"2-|2-Check Response Body includes Title\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"title\");\r",
+									"});\r",
+									"pm.test(\"3-|2-Check Response Body includes dueDate\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"dueDate\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"4-|2-Check Response Body includes Completed\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"completed\");\r",
+									"});\r",
+									"pm.test(\"1-|3-Check ID not Null\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.id).to.not.eql(null);\r",
+									"    });\r",
+									" pm.test(\"2-|3-Check Title not Null\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.title).to.not.eql(null);\r",
+									"    });\r",
+									"pm.test(\"3-|3-Check dueDate not Null\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.dueDate).to.not.eql(null);\r",
+									"    });\r",
+									"pm.test(\"4-|3-Check completed not Null\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.completed).to.not.eql(null);\r",
+									"    });\r",
+									" \r",
+									"pm.test(\"1-|4-Check ID value\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.id).to.eql(18);\r",
+									"    });\r",
+									" pm.test(\"2-|4-Check Title value\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.title).to.eql(\"string\");\r",
+									"    });\r",
+									"pm.test(\"3-|4-Check dueDate value\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.dueDate).to.eql(\"2024-03-09T11:50:17.873Z\");\r",
+									"    });\r",
+									"pm.test(\"4-|4-Check completed value\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.completed).to.eql(false);\r",
+									"    });\r",
+									"   "
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json; ",
+								"type": "text"
+							},
+							{
+								"key": "accept",
+								"value": "text/plain;",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 18,\r\n  \"title\": \"string\",\r\n  \"dueDate\": \"2024-03-09T11:50:17.873Z\",\r\n  \"completed\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/Activities",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Activities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Activity",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is less than 3000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"1-|1-Check ID DataType\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.id).to.be.a(\"number\");\r",
+									"});\r",
+									"pm.test(\"2-|1-Check Title DataType\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.title).to.be.a(\"string\");\r",
+									"});\r",
+									"pm.test(\"3-|1-Check dueDate DataType\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.dueDate).to.be.a(\"string\");\r",
+									"});\r",
+									"pm.test(\"4-|1-Check Completed DataType\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.completed).to.be.a(\"boolean\");\r",
+									"});\r",
+									"pm.test(\"1-|2-Check Response Body includes ID\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"id\");\r",
+									"});\r",
+									"pm.test(\"2-|2-Check Response Body includes Title\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"title\");\r",
+									"});\r",
+									"pm.test(\"3-|2-Check Response Body includes dueDate\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"dueDate\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"4-|2-Check Response Body includes Completed\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"completed\");\r",
+									"});\r",
+									"pm.test(\"1-|3-Check ID not Null\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.id).to.not.eql(null);\r",
+									"    });\r",
+									" pm.test(\"2-|3-Check Title not Null\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.title).to.not.eql(null);\r",
+									"    });\r",
+									"pm.test(\"3-|3-Check dueDate not Null\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.dueDate).to.not.eql(null);\r",
+									"    });\r",
+									"pm.test(\"4-|3-Check completed not Null\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.completed).to.not.eql(null);\r",
+									"    });\r",
+									" \r",
+									"pm.test(\"1-|4-Check ID value\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.id).to.eql(3);\r",
+									"});\r",
+									"pm.test(\"2-|4-Check Title value\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.title).to.eql(\"Activity 3\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"3-|4-Check Completed value\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.completed).to.eql(false);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "text/plain;",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/Activities/3",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Activities",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Activity",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is less than 3000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"1-|1-Check ID DataType\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.id).to.be.a(\"number\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"2-|1-Check Title DataType\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.title).to.be.a(\"string\");\r",
+									"});\r",
+									"pm.test(\"3-|1-Check dueDate DataType\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.dueDate).to.be.a(\"string\");\r",
+									"});\r",
+									"pm.test(\"4-|1-Check Completed DataType\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.completed).to.be.a(\"boolean\");\r",
+									"});\r",
+									"pm.test(\"1-|2-Check Response Body includes ID\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"id\");\r",
+									"});\r",
+									"pm.test(\"2-|2-Check Response Body includes Title\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"title\");\r",
+									"});\r",
+									"pm.test(\"3-|2-Check Response Body includes dueDate\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"dueDate\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"4-|2-Check Response Body includes Completed\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"completed\");\r",
+									"});                          \r",
+									"pm.test(\"1-|3-Check ID not Null\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.id).to.not.eql(null);\r",
+									"    });\r",
+									" pm.test(\"2-|3-Check Title not Null\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.title).to.not.eql(null);\r",
+									"    });\r",
+									"pm.test(\"3-|3-Check dueDate not Null\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.dueDate).to.not.eql(null);\r",
+									"    });\r",
+									"pm.test(\"4-|3-Check completed not Null\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.completed).to.not.eql(null);\r",
+									"    });\r",
+									" \r",
+									" pm.test(\"1-|4-Check ID value\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.id).to.eql(4);\r",
+									"    });\r",
+									" pm.test(\"2-|4-Check Title value\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.title).to.eql(\"string\");\r",
+									"    });\r",
+									"     pm.test(\"3-|4-Check dueDate value\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.dueDate).to.eql(\"2024-03-09T11:50:17.873Z\");\r",
+									"    });\r",
+									"    pm.test(\"4-|4-Check completed value\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.completed).to.eql(false);\r",
+									"    });\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "accept",
+								"value": "text/plain;",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json;",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 4,\r\n  \"title\": \"string\",\r\n  \"dueDate\": \"2024-03-09T11:50:17.873Z\",\r\n  \"completed\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/Activities/4",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Activities",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Activity",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Response time is less than 3000ms', function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+									"})\r",
+									"\r",
+									"pm.test('Status code is 200', function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/Activities/6",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Activities",
+								"6"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Authors",
+			"item": [
+				{
+					"name": "Get Authors",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is less than 3000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"for (var i = 0; i < JSON.parse(responseBody).length; i++) {\r",
+									"    pm.test(\"1-|1- check Response Body includes ID\", function () {\r",
+									"        pm.expect(JSON.parse(responseBody)[i]).to.have.property(\"id\");\r",
+									"    });}\r",
+									"for (var i = 0; i < JSON.parse(responseBody).length; i++) {\r",
+									"    pm.test(\"2-|1- check Response Body includes idBook\", function () {\r",
+									"       pm.expect(JSON.parse(responseBody)[i]).to.have.property(\"idBook\");\r",
+									"    });}\r",
+									"    for (var i = 0; i < JSON.parse(responseBody).length; i++) {\r",
+									"    pm.test(\"3-|1- check Response Body includes firstName\", function () {\r",
+									"        pm.expect(JSON.parse(responseBody)[i]).to.have.property(\"firstName\");\r",
+									"    });}\r",
+									"    for (var i = 0; i < JSON.parse(responseBody).length; i++) {\r",
+									"    pm.test(\"4-|1- check Response Body includes lastName\", function () {\r",
+									"        pm.expect(JSON.parse(responseBody)[i]).to.have.property(\"lastName\");\r",
+									"    });}\r",
+									"for (var i = 0; i < JSON.parse(responseBody).length; i++) {\r",
+									"    pm.test(\"1-|2- check ID DataType\", function () {\r",
+									"        pm.expect(JSON.parse(responseBody)[i].id).to.be.a('number');\r",
+									"    });}\r",
+									"for (var i = 0; i < JSON.parse(responseBody).length; i++) {\r",
+									"    pm.test(\"2-|2- check idBook DataType\", function () {\r",
+									"        pm.expect(JSON.parse(responseBody)[i].idBook).to.be.a('number');\r",
+									"    });}\r",
+									"    for (var i = 0; i < JSON.parse(responseBody).length; i++) { \r",
+									"    pm.test(\"3-|2- check firstName DataType\", function () {\r",
+									"        pm.expect(JSON.parse(responseBody)[i].firstName).to.be.a('string');\r",
+									"    });}\r",
+									"      for (var i = 0; i < JSON.parse(responseBody).length; i++) {\r",
+									"    pm.test(\"4-|2- check LastName DataType\", function () {\r",
+									"        pm.expect(JSON.parse(responseBody)[i].lastName).to.be.a('string');\r",
+									"    });}\r",
+									"\r",
+									"for (var i = 0; i < JSON.parse(responseBody).length; i++) {\r",
+									"    pm.test(\"1-|3- check ID not Null\", function () {\r",
+									"        pm.expect(JSON.parse(responseBody)[i].id).to.not.eql(null);\r",
+									"    });}\r",
+									"for (var i = 0; i < JSON.parse(responseBody).length; i++) {\r",
+									"    pm.test(\"2-|3- check idBook not Null\", function () {\r",
+									"       pm.expect(JSON.parse(responseBody)[i].idBook).to.not.eql(null);\r",
+									"    });}\r",
+									"    for (var i = 0; i < JSON.parse(responseBody).length; i++) {\r",
+									"    pm.test(\"3-|3- check firstName not Null\", function () {\r",
+									"        pm.expect(JSON.parse(responseBody)[i].firstName).to.not.eql(null);\r",
+									"    });}\r",
+									"    for (var i = 0; i < JSON.parse(responseBody).length; i++) {\r",
+									"    pm.test(\"4-|3- check lastName not Null\", function () {\r",
+									"        pm.expect(JSON.parse(responseBody)[i].lastName).to.not.eql(null);\r",
+									"    });}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/Authors",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Authors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create author",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"AuthorId\", jsonData.id);\r",
+									"\r",
+									"pm.test(\"Response time is less than 3000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									" \r",
+									"pm.test(\"1-|1-Check ID DataType\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.id).to.be.a(\"number\");\r",
+									"});\r",
+									"pm.test(\"2-|1-Check idBook DataType\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.idBook).to.be.a(\"number\");\r",
+									"});\r",
+									"pm.test(\"3-|1-Check firstName DataType\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.firstName).to.be.a(\"string\");\r",
+									"});\r",
+									"pm.test(\"4-|1-Check lastName DataType\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.lastName).to.be.a(\"string\");\r",
+									"});\r",
+									"pm.test(\"1-|2-Check Response Body includes ID\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"id\");\r",
+									"});\r",
+									"pm.test(\"2-|2-Check Response Body includes idBook\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"idBook\");\r",
+									"});\r",
+									"pm.test(\"3-|2-Check Response Body includes firstName\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"firstName\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"4-|2-Check Response Body includes lastName\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"lastName\");\r",
+									"});\r",
+									"pm.test(\"1-|3-Check ID not Null\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.id).to.not.eql(null);\r",
+									"    });\r",
+									" pm.test(\"2-|3-Check idBook not Null\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.idBook).to.not.eql(null);;\r",
+									"    });\r",
+									"pm.test(\"3-|3-Check firstName not Null\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.firstName).to.not.eql(null);;\r",
+									"    });\r",
+									" pm.test(\"4-|3-Check lastName not Null\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.lastName).to.not.eql(null);;\r",
+									"    });\r",
+									" \r",
+									"pm.test(\"1-|4-Check ID value\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.id).to.eql(10);\r",
+									"    });\r",
+									" pm.test(\"2-|4-Check idBook value\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.idBook).to.eql(0);\r",
+									"    });\r",
+									"pm.test(\"3-|4-Check firstName value\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.firstName).to.eql(\"string\");\r",
+									"    });\r",
+									" pm.test(\"4-|4-Check lastName value\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.lastName).to.eql(\"string\");\r",
+									"    });\r",
+									" "
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 10,\r\n  \"idBook\": 0,\r\n  \"firstName\": \"string\",\r\n  \"lastName\": \"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/Authors",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Authors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Authors with Bookid",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is less than 3000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"for (var i = 0; i < JSON.parse(responseBody).length; i++) {\r",
+									"    pm.test(\"1-|1- check Response Body includes ID\", function () {\r",
+									"        pm.expect(JSON.parse(responseBody)[i]).to.have.property(\"id\");\r",
+									"    });}\r",
+									"for (var i = 0; i < JSON.parse(responseBody).length; i++) {\r",
+									"    pm.test(\"2-|1- check Response Body includes idBook\", function () {\r",
+									"       pm.expect(JSON.parse(responseBody)[i]).to.have.property(\"idBook\");\r",
+									"    });}\r",
+									"    for (var i = 0; i < JSON.parse(responseBody).length; i++) {\r",
+									"    pm.test(\"3-|1- check Response Body includes firstName\", function () {\r",
+									"        pm.expect(JSON.parse(responseBody)[i]).to.have.property(\"firstName\");\r",
+									"    });}\r",
+									"    for (var i = 0; i < JSON.parse(responseBody).length; i++) {\r",
+									"    pm.test(\"4-|1- check Response Body includes lastName\", function () {\r",
+									"        pm.expect(JSON.parse(responseBody)[i]).to.have.property(\"lastName\");\r",
+									"    });}\r",
+									"for (var i = 0; i < JSON.parse(responseBody).length; i++) {\r",
+									"    pm.test(\"1-|2- check ID DataType\", function () {\r",
+									"        pm.expect(JSON.parse(responseBody)[i].id).to.be.a('number');\r",
+									"    });}\r",
+									"for (var i = 0; i < JSON.parse(responseBody).length; i++) {\r",
+									"    pm.test(\"2-|2- check idBook DataType\", function () {\r",
+									"        pm.expect(JSON.parse(responseBody)[i].idBook).to.be.a('number');\r",
+									"    });}\r",
+									"    for (var i = 0; i < JSON.parse(responseBody).length; i++) { \r",
+									"    pm.test(\"3-|2- check firstName DataType\", function () {\r",
+									"        pm.expect(JSON.parse(responseBody)[i].firstName).to.be.a('string');\r",
+									"    });}\r",
+									"      for (var i = 0; i < JSON.parse(responseBody).length; i++) {\r",
+									"    pm.test(\"4-|2- check LastName DataType\", function () {\r",
+									"        pm.expect(JSON.parse(responseBody)[i].lastName).to.be.a('string');\r",
+									"    });}\r",
+									"    for (var i = 0; i < JSON.parse(responseBody).length; i++) {\r",
+									"    pm.test(\"1-|3- check ID not Null\", function () {\r",
+									"        pm.expect(JSON.parse(responseBody)[i].id).to.not.eql(null);\r",
+									"    });}\r",
+									"for (var i = 0; i < JSON.parse(responseBody).length; i++) {\r",
+									"    pm.test(\"2-|3- check idBook not Null\", function () {\r",
+									"       pm.expect(JSON.parse(responseBody)[i].idBook).to.not.eql(null);\r",
+									"    });}\r",
+									"    for (var i = 0; i < JSON.parse(responseBody).length; i++) {\r",
+									"    pm.test(\"3-|3- check firstName not Null\", function () {\r",
+									"        pm.expect(JSON.parse(responseBody)[i].firstName).to.not.eql(null);\r",
+									"    });}\r",
+									"    for (var i = 0; i < JSON.parse(responseBody).length; i++) {\r",
+									"    pm.test(\"4-|3- check lastName not Null\", function () {\r",
+									"        pm.expect(JSON.parse(responseBody)[i].lastName).to.not.eql(null);\r",
+									"    });}\r",
+									"pm.test(\"1-|4-check idBook value of [0]\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0].idBook).to.eql(6);\r",
+									"});\r",
+									"pm.test(\"2-|4-check idBook value of [1]\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[1].idBook).to.eql(6);\r",
+									"});\r",
+									"pm.test(\"3-|4-check idBook value [2]\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[2].idBook).to.eql(6);\r",
+									"});\r",
+									"pm.test(\"4-|4-check idBook value [3]\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[3].idBook).to.eql(6);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/Authors/authors/books/6",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Authors",
+								"authors",
+								"books",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Author",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is less than 3000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"1-|1-Check ID DataType\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.id).to.be.a(\"number\");\r",
+									"});\r",
+									"pm.test(\"2-|1-Check idBook DataType\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.idBook).to.be.a(\"number\");\r",
+									"});\r",
+									"pm.test(\"3-|1-Check firstName DataType\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.firstName).to.be.a(\"string\");\r",
+									"});\r",
+									"pm.test(\"4-|1-Check lastName DataType\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.lastName).to.be.a(\"string\");\r",
+									"});\r",
+									"pm.test(\"1-|2-Check Response Body includes ID\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"id\");\r",
+									"});\r",
+									"pm.test(\"2-|2-Check Response Body includes idBook\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"idBook\");\r",
+									"});\r",
+									"pm.test(\"3-|2-Check Response Body includes firstName\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"firstName\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"4-|2-Check Response Body includes lastName\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"lastName\");\r",
+									"});\r",
+									"pm.test(\"1-|3-Check ID not Null\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.id).to.not.eql(null);\r",
+									"    });\r",
+									" pm.test(\"2-|3-Check idBook not Null\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.idBook).to.not.eql(null);;\r",
+									"    });\r",
+									"pm.test(\"3-|3-Check firstName not Null\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.firstName).to.not.eql(null);;\r",
+									"    });\r",
+									" pm.test(\"4-|3-Check lastName not Null\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.lastName).to.not.eql(null);;\r",
+									"    });\r",
+									"pm.test(\"1-|4-Check ID value\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.id).to.eql(3);\r",
+									"    });\r",
+									" pm.test(\"2-|4-Check idBook value\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.idBook).to.be.oneOf([1,2]);\r",
+									"       \r",
+									"    });\r",
+									"pm.test(\"3-|4-Check firstName value\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.firstName).to.eql(\"First Name 3\");\r",
+									"    });\r",
+									" pm.test(\"4-|4-Check lastName value\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.lastName).to.eql(\"Last Name 3\");\r",
+									"    });\r",
+									"\r",
+									" \r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/Authors/3",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Authors",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Author",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is less than 3000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"1-|1-Check ID DataType\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.id).to.be.a(\"number\");\r",
+									"});\r",
+									"pm.test(\"2-|1-Check idBook DataType\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.idBook).to.be.a(\"number\");\r",
+									"});\r",
+									"pm.test(\"3-|1-Check firstName DataType\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.firstName).to.be.a(\"string\");\r",
+									"});\r",
+									"pm.test(\"4-|1-Check lastName DataType\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.lastName).to.be.a(\"string\");\r",
+									"});\r",
+									"pm.test(\"1-|2-Check Response Body includes ID\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"id\");\r",
+									"});\r",
+									"pm.test(\"2-|2-Check Response Body includes idBook\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"idBook\");\r",
+									"});\r",
+									"pm.test(\"3-|2-Check Response Body includes firstName\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"firstName\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"4-|2-Check Response Body includes lastName\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"lastName\");\r",
+									"});\r",
+									"pm.test(\"1-|3-Check ID not Null\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.id).to.not.eql(null);\r",
+									"    });\r",
+									" pm.test(\"2-|3-Check idBook not Null\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.idBook).to.not.eql(null);;\r",
+									"    });\r",
+									"pm.test(\"3-|3-Check firstName not Null\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.firstName).to.not.eql(null);;\r",
+									"    });\r",
+									" pm.test(\"4-|3-Check lastName not Null\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.lastName).to.not.eql(null);;\r",
+									"    });\r",
+									"pm.test(\"1-|4-Check ID value\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.id).to.eql(10);\r",
+									"    });\r",
+									" pm.test(\"2-|4-Check idBook value\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.idBook).to.eql(1);\r",
+									"    });\r",
+									"pm.test(\"3-|4-Check firstName value\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.firstName).to.eql(\"string\");\r",
+									"    });\r",
+									" pm.test(\"4-|4-Check lastName value\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.lastName).to.eql(\"string\");\r",
+									"    });\r",
+									" "
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 10,\r\n  \"idBook\": 1,\r\n  \"firstName\": \"string\",\r\n  \"lastName\": \"string\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/Authors/9",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Authors",
+								"9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Author",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is less than 3000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/Authors/5",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Authors",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Books",
+			"item": [
+				{
+					"name": "Get Books",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is less than 3000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"for (var i = 0; i < JSON.parse(responseBody).length; i++) {\r",
+									"    pm.test(\"1-|1- check Response Body includes ID\", function () {\r",
+									"        pm.expect(JSON.parse(responseBody)[i]).to.have.property(\"id\");\r",
+									"    });}\r",
+									"\r",
+									"    for (var i = 0; i < JSON.parse(responseBody).length; i++) {\r",
+									"    pm.test(\"2-|1- check Response Body includes title\", function () {\r",
+									"        pm.expect(JSON.parse(responseBody)[i]).to.have.property(\"title\");\r",
+									"    });}\r",
+									"    for (var i = 0; i < JSON.parse(responseBody).length; i++) {\r",
+									"    pm.test(\"3-|1- check Response Body includes description\", function () {\r",
+									"        pm.expect(JSON.parse(responseBody)[i]).to.have.property(\"description\");\r",
+									"    });}\r",
+									"    for (var i = 0; i < JSON.parse(responseBody).length; i++) {\r",
+									"    pm.test(\"4-|1- check Response Body includes pageCount\", function () {\r",
+									"        pm.expect(JSON.parse(responseBody)[i]).to.have.property(\"pageCount\");\r",
+									"    });}\r",
+									"    for (var i = 0; i < JSON.parse(responseBody).length; i++) {\r",
+									"    pm.test(\"5-|1- check Response Body includes excerpt\", function () {\r",
+									"        pm.expect(JSON.parse(responseBody)[i]).to.have.property(\"excerpt\");\r",
+									"    });}\r",
+									"for (var i = 0; i < JSON.parse(responseBody).length; i++) {\r",
+									"    pm.test(\"1-|2- check ID DataType\", function () {\r",
+									"        pm.expect(JSON.parse(responseBody)[i].id).to.be.a('number');\r",
+									"    });}\r",
+									"for (var i = 0; i < JSON.parse(responseBody).length; i++) {\r",
+									"    pm.test(\"2-|2- check title DataType\", function () {\r",
+									"        pm.expect(JSON.parse(responseBody)[i].title).to.be.a('string');\r",
+									"    });}\r",
+									"    for (var i = 0; i < JSON.parse(responseBody).length; i++) { \r",
+									"    pm.test(\"3-|2- check description DataType\", function () {\r",
+									"        pm.expect(JSON.parse(responseBody)[i].description).to.be.a('string');\r",
+									"    });}\r",
+									"      for (var i = 0; i < JSON.parse(responseBody).length; i++) {\r",
+									"    pm.test(\"4-|2- check pageCount DataType\", function () {\r",
+									"        pm.expect(JSON.parse(responseBody)[i].pageCount).to.be.a('number');\r",
+									"    });}\r",
+									" for (var i = 0; i < JSON.parse(responseBody).length; i++) {\r",
+									"    pm.test(\"5-|2- check excerpt DataType\", function () {\r",
+									"        pm.expect(JSON.parse(responseBody)[i].excerpt).to.be.a('string');\r",
+									"    });}\r",
+									"    for (var i = 0; i < JSON.parse(responseBody).length; i++) {\r",
+									"    pm.test(\"1-|3- check ID not Null\", function () {\r",
+									"        pm.expect(JSON.parse(responseBody)[i].id).to.not.eql(null);\r",
+									"    });}\r",
+									"for (var i = 0; i < JSON.parse(responseBody).length; i++) {\r",
+									"    pm.test(\"2-|3- check title not Null\", function () {\r",
+									"        pm.expect(JSON.parse(responseBody)[i].title).to.not.eql(null);\r",
+									"    });}\r",
+									"    for (var i = 0; i < JSON.parse(responseBody).length; i++) { \r",
+									"    pm.test(\"3-|3- check description not Null\", function () {\r",
+									"        pm.expect(JSON.parse(responseBody)[i].description).to.not.eql(null);\r",
+									"    });}\r",
+									"      for (var i = 0; i < JSON.parse(responseBody).length; i++) {\r",
+									"    pm.test(\"4-|3- check pageCount not Null\", function () {\r",
+									"        pm.expect(JSON.parse(responseBody)[i].pageCount).to.not.eql(null);\r",
+									"    });}\r",
+									" for (var i = 0; i < JSON.parse(responseBody).length; i++) {\r",
+									"    pm.test(\"5-|3- check excerpt not Null\", function () {\r",
+									"        pm.expect(JSON.parse(responseBody)[i].excerpt).to.not.eql(null);\r",
+									"    });}\r",
+									"    "
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/Books",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Book",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is less than 3000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"    var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"BookId\", jsonData.id);\r",
+									"\r",
+									"pm.test(\"1-|1-Check ID DataType\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.id).to.be.a(\"number\");\r",
+									"});\r",
+									"pm.test(\"2-|1-Check title DataType\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.title).to.be.a(\"string\");\r",
+									"});\r",
+									"pm.test(\"3-|1-Check description DataType\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.description).to.be.a(\"string\");\r",
+									"});\r",
+									"pm.test(\"4-|1-Check pageCount DataType\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.pageCount).to.be.a(\"Number\");\r",
+									"});\r",
+									"pm.test(\"5-|1-Check excerpt DataType\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.excerpt).to.be.a(\"string\");\r",
+									"});\r",
+									"pm.test(\"6-|1-Check publishDate DataType\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.publishDate).to.be.a(\"string\");\r",
+									"});\r",
+									"pm.test(\"1-|2-Check Response Body includes ID\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"id\");\r",
+									"});\r",
+									"pm.test(\"2-|2-Check Response Body includes title\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"title\");\r",
+									"});\r",
+									"pm.test(\"3-|2-Check Response Body includes description\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"description\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"4-|2-Check Response Body includes pageCount\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"pageCount\");\r",
+									"});\r",
+									"pm.test(\"5-|2-Check Response Body includes excerpt\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"excerpt\");\r",
+									"});\r",
+									"pm.test(\"6-|2-Check Response Body includes publishDate\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"publishDate\");\r",
+									"});\r",
+									"pm.test(\"1-|3-Check ID not Null\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.id).to.not.eql(null);\r",
+									"    });\r",
+									" pm.test(\"2-|3-Check title not Null\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.title).to.not.eql(null);\r",
+									"    });\r",
+									"pm.test(\"3-|3-Check description not Null\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.description).to.not.eql(null);\r",
+									"    });\r",
+									" pm.test(\"4-|3-Check pageCount not Null\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.pageCount).to.not.eql(null);\r",
+									"    });\r",
+									"     pm.test(\"5-|3-Check excerpt not Null\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.excerpt).to.not.eql(null);\r",
+									"    });\r",
+									"     pm.test(\"6-|3-Check publishDate not Null\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.publishDate).to.not.eql(null);\r",
+									"    });\r",
+									" \r",
+									"pm.test(\"1-|4-Check ID value\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.id).to.eql(1);\r",
+									"    });\r",
+									" pm.test(\"2-|4-Check title value\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.title).to.eql(\"Not String\");\r",
+									"    });\r",
+									"pm.test(\"3-|4-Check description value\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.description).to.eql(\"string\");\r",
+									"    });\r",
+									" pm.test(\"4-|4-Check pageCount value\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.pageCount).to.eql(0);\r",
+									"    });\r",
+									"     pm.test(\"5-|4-Check excerpt value\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.excerpt).to.eql(\"string\");\r",
+									"    });\r",
+									"     pm.test(\"6-|4-Check publishDate value\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.publishDate).to.eql(\"2024-03-09T15:25:28.235Z\");\r",
+									"    });\r",
+									" "
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 1,\r\n  \"title\": \"Not String\",\r\n  \"description\": \"string\",\r\n  \"pageCount\": 0,\r\n  \"excerpt\": \"string\",\r\n  \"publishDate\": \"2024-03-09T15:25:28.235Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/Books",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Book",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is less than 3000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"1-|1-Check ID DataType\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.id).to.be.a(\"number\");\r",
+									"});\r",
+									"pm.test(\"2-|1-Check title DataType\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.title).to.be.a(\"string\");\r",
+									"});\r",
+									"pm.test(\"3-|1-Check description DataType\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.description).to.be.a(\"string\");\r",
+									"});\r",
+									"pm.test(\"4-|1-Check pageCount DataType\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.pageCount).to.be.a(\"Number\");\r",
+									"});\r",
+									"pm.test(\"5-|1-Check excerpt DataType\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.excerpt).to.be.a(\"string\");\r",
+									"});\r",
+									"pm.test(\"6-|1-Check publishDate DataType\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.publishDate).to.be.a(\"string\");\r",
+									"});\r",
+									"pm.test(\"1-|2-Check Response Body includes ID\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"id\");\r",
+									"});\r",
+									"pm.test(\"2-|2-Check Response Body includes title\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"title\");\r",
+									"});\r",
+									"pm.test(\"3-|2-Check Response Body includes description\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"description\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"4-|2-Check Response Body includes pageCount\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"pageCount\");\r",
+									"});\r",
+									"pm.test(\"5-|2-Check Response Body includes excerpt\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"excerpt\");\r",
+									"});\r",
+									"pm.test(\"6-|2-Check Response Body includes publishDate\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"publishDate\");\r",
+									"});\r",
+									"pm.test(\"1-|3-Check ID not Null\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.id).to.not.eql(null);\r",
+									"    });\r",
+									" pm.test(\"2-|3-Check title not Null\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.title).to.not.eql(null);\r",
+									"    });\r",
+									"pm.test(\"3-|3-Check description not Null\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.description).to.not.eql(null);\r",
+									"    });\r",
+									" pm.test(\"4-|3-Check pageCount not Null\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.pageCount).to.not.eql(null);\r",
+									"    });\r",
+									"     pm.test(\"5-|3-Check excerpt not Null\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.excerpt).to.not.eql(null);\r",
+									"    });\r",
+									"     pm.test(\"6-|3-Check publishDate not Null\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.publishDate).to.not.eql(null);\r",
+									"    });\r",
+									" \r",
+									"pm.test(\"1-|4-Check ID value\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.id).to.eql(3);\r",
+									"    });\r",
+									" pm.test(\"2-|4-Check title value\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.title).to.eql(\"Book 3\");\r",
+									"    });\r",
+									"pm.test(\"3-|4-Check description value\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.description).to.eql(\"Lorem lorem lorem. Lorem lorem lorem. Lorem lorem lorem.\\n\");\r",
+									"    });\r",
+									" pm.test(\"4-|4-Check pageCount value\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.pageCount).to.eql(300);\r",
+									"    });\r",
+									"     pm.test(\"5-|4-Check excerpt value\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.excerpt).to.eql(\"Lorem lorem lorem. Lorem lorem lorem. Lorem lorem lorem.\\nLorem lorem lorem. Lorem lorem lorem. Lorem lorem lorem.\\nLorem lorem lorem. Lorem lorem lorem. Lorem lorem lorem.\\nLorem lorem lorem. Lorem lorem lorem. Lorem lorem lorem.\\nLorem lorem lorem. Lorem lorem lorem. Lorem lorem lorem.\\n\");\r",
+									"    });\r",
+									"   \r",
+									" "
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/Books/3",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Books",
+								"3"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "title",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Book",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is less than 3000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"1-|1-Check ID DataType\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.id).to.be.a(\"number\");\r",
+									"});\r",
+									"pm.test(\"2-|1-Check title DataType\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.title).to.be.a(\"string\");\r",
+									"});\r",
+									"pm.test(\"3-|1-Check description DataType\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.description).to.be.a(\"string\");\r",
+									"});\r",
+									"pm.test(\"4-|1-Check pageCount DataType\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.pageCount).to.be.a(\"Number\");\r",
+									"});\r",
+									"pm.test(\"5-|1-Check excerpt DataType\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.excerpt).to.be.a(\"string\");\r",
+									"});\r",
+									"pm.test(\"6-|1-Check publishDate DataType\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.publishDate).to.be.a(\"string\");\r",
+									"});\r",
+									"pm.test(\"1-|2-Check Response Body includes ID\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"id\");\r",
+									"});\r",
+									"pm.test(\"2-|2-Check Response Body includes title\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"title\");\r",
+									"});\r",
+									"pm.test(\"3-|2-Check Response Body includes description\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"description\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"4-|2-Check Response Body includes pageCount\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"pageCount\");\r",
+									"});\r",
+									"pm.test(\"5-|2-Check Response Body includes excerpt\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"excerpt\");\r",
+									"});\r",
+									"pm.test(\"6-|2-Check Response Body includes publishDate\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"publishDate\");\r",
+									"});\r",
+									"pm.test(\"1-|3-Check ID not Null\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.id).to.not.eql(null);\r",
+									"    });\r",
+									" pm.test(\"2-|3-Check title not Null\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.title).to.not.eql(null);\r",
+									"    });\r",
+									"pm.test(\"3-|3-Check description not Null\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.description).to.not.eql(null);\r",
+									"    });\r",
+									" pm.test(\"4-|3-Check pageCount not Null\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.pageCount).to.not.eql(null);\r",
+									"    });\r",
+									"     pm.test(\"5-|3-Check excerpt not Null\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.excerpt).to.not.eql(null);\r",
+									"    });\r",
+									"     pm.test(\"6-|3-Check publishDate not Null\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.publishDate).to.not.eql(null);\r",
+									"    });\r",
+									" \r",
+									"pm.test(\"1-|4-Check ID value\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.id).to.eql(9);\r",
+									"    });\r",
+									" pm.test(\"2-|4-Check title value\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.title).to.eql(\"New Title\");\r",
+									"    });\r",
+									"pm.test(\"3-|4-Check description value\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.description).to.eql(\"string\");\r",
+									"    });\r",
+									" pm.test(\"4-|4-Check pageCount value\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.pageCount).to.eql(6);\r",
+									"    });\r",
+									"     pm.test(\"5-|4-Check excerpt value\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.excerpt).to.eql(\"string\");\r",
+									"    });\r",
+									"     pm.test(\"6-|4-Check publishDate value\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.publishDate).to.eql(\"2024-03-09T15:25:28.235Z\");\r",
+									"    });\r",
+									" "
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 9,\r\n    \"title\": \"New Title\",\r\n    \"description\": \"string\",\r\n    \"pageCount\":6,\r\n    \"excerpt\": \"string\",\r\n    \"publishDate\": \"2024-03-09T15:25:28.235Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/Books/9",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Books",
+								"9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete book",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is less than 3000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/Books/7",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Books",
+								"7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CoverPhotos",
+			"item": [
+				{
+					"name": "Get CoverPhotos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is less than 3000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"for (var i = 0; i < JSON.parse(responseBody).length; i++) {\r",
+									"    pm.test(\"1-|1- check Response Body includes ID\", function () {\r",
+									"        pm.expect(JSON.parse(responseBody)[i]).to.have.property(\"id\");\r",
+									"    });}\r",
+									"\r",
+									"    for (var i = 0; i < JSON.parse(responseBody).length; i++) {\r",
+									"    pm.test(\"2-|1- check Response Body includes idBook\", function () {\r",
+									"        pm.expect(JSON.parse(responseBody)[i]).to.have.property(\"idBook\");\r",
+									"    });}\r",
+									"    for (var i = 0; i < JSON.parse(responseBody).length; i++) {\r",
+									"    pm.test(\"3-|1- check Response Body includes url\", function () {\r",
+									"        pm.expect(JSON.parse(responseBody)[i]).to.have.property(\"url\");\r",
+									"    });}\r",
+									"    \r",
+									"for (var i = 0; i < JSON.parse(responseBody).length; i++) {\r",
+									"    pm.test(\"1-|2- check ID DataType\", function () {\r",
+									"        pm.expect(JSON.parse(responseBody)[i].id).to.be.a('number');\r",
+									"    });}\r",
+									"for (var i = 0; i < JSON.parse(responseBody).length; i++) {\r",
+									"    pm.test(\"2-|2- check idBook DataType\", function () {\r",
+									"        pm.expect(JSON.parse(responseBody)[i].idBook).to.be.a('number');\r",
+									"    });}\r",
+									"    for (var i = 0; i < JSON.parse(responseBody).length; i++) { \r",
+									"    pm.test(\"3-|2- check url DataType\", function () {\r",
+									"        pm.expect(JSON.parse(responseBody)[i].url).to.be.a('string');\r",
+									"    });}\r",
+									"      for (var i = 0; i < JSON.parse(responseBody).length; i++) {\r",
+									"    pm.test(\"1-|3- check ID not Null\", function () {\r",
+									"        pm.expect(JSON.parse(responseBody)[i].id).to.not.eql(null);\r",
+									"    });}\r",
+									"    for (var i = 0; i < JSON.parse(responseBody).length; i++) {\r",
+									"    pm.test(\"2-|3- check idBook not Null\", function () {\r",
+									"        pm.expect(JSON.parse(responseBody)[i].idBook).to.not.eql(null);\r",
+									"    });}\r",
+									"    for (var i = 0; i < JSON.parse(responseBody).length; i++) { \r",
+									"    pm.test(\"3-|3- check url not Null\", function () {\r",
+									"        pm.expect(JSON.parse(responseBody)[i].url).to.not.eql(null);\r",
+									"    });}\r",
+									"    "
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/CoverPhotos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"CoverPhotos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create CoverPhoto",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is less than 3000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"1-|1-Check ID DataType\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.id).to.be.a(\"number\");\r",
+									"});\r",
+									"pm.test(\"2-|1-Check idBook DataType\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.idBook).to.be.a(\"number\");\r",
+									"});\r",
+									"pm.test(\"3-|1-Check url DataType\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.url).to.be.a(\"string\");\r",
+									"});\r",
+									"pm.test(\"1-|2-Check Response Body includes ID\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"id\");\r",
+									"});\r",
+									"pm.test(\"2-|2-Check Response Body includes idBook\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"idBook\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"3-|2-Check Response Body includes url\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"url\");\r",
+									"});\r",
+									"pm.test(\"1-|3-Check ID not Null\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.id).to.not.eql(null);\r",
+									"    });\r",
+									" pm.test(\"2-|3-Check idBook not Null\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.idBook).to.not.eql(null);\r",
+									"    });\r",
+									"pm.test(\"3-|3-Check url not Null\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.url).to.not.eql(null);\r",
+									"    });\r",
+									"\r",
+									"pm.test(\"1-|4-Check ID value\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.id).to.eql(1);\r",
+									"    });\r",
+									" pm.test(\"2-|4-Check idBook value\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.idBook).to.eql(0);\r",
+									"    });\r",
+									"pm.test(\"3-|4-Check url value\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.url).to.eql(\"https://placeholdit.imgix.net/~text?txtsize=33&txt=Book 3&w=250&h=350\");\r",
+									"    });\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 1,\r\n  \"idBook\": 0,\r\n  \"url\": \"https://placeholdit.imgix.net/~text?txtsize=33&txt=Book 3&w=250&h=350\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/CoverPhotos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"CoverPhotos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get CoverPhoto",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is less than 3000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"1-|1-Check ID DataType\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.id).to.be.a(\"number\");\r",
+									"});\r",
+									"pm.test(\"2-|1-Check idBook DataType\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.idBook).to.be.a(\"number\");\r",
+									"});\r",
+									"pm.test(\"3-|1-Check url DataType\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.url).to.be.a(\"string\");\r",
+									"});\r",
+									"pm.test(\"1-|2-Check Response Body includes ID\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"id\");\r",
+									"});\r",
+									"pm.test(\"2-|2-Check Response Body includes idBook\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"idBook\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"3-|2-Check Response Body includes url\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"url\");\r",
+									"});\r",
+									"pm.test(\"1-|3-Check ID not Null\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.id).to.not.eql(null);\r",
+									"    });\r",
+									" pm.test(\"2-|3-Check idBook not Null\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.idBook).to.not.eql(null);\r",
+									"    });\r",
+									"pm.test(\"3-|3-Check url not Null\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.url).to.not.eql(null);\r",
+									"    });\r",
+									"\r",
+									"pm.test(\"1-|4-Check ID value\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.id).to.eql(3);\r",
+									"    });\r",
+									" pm.test(\"2-|4-Check idBook value\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.idBook).to.eql(3);\r",
+									"    });\r",
+									"pm.test(\"3-|4-Check url value\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.url).to.eql(\"https://placeholdit.imgix.net/~text?txtsize=33&txt=Book 3&w=250&h=350\");\r",
+									"    });"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/CoverPhotos/3",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"CoverPhotos",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update CoverPhoto",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is less than 3000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"1-|1-Check ID DataType\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.id).to.be.a(\"number\");\r",
+									"});\r",
+									"pm.test(\"2-|1-Check idBook DataType\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.idBook).to.be.a(\"number\");\r",
+									"});\r",
+									"pm.test(\"3-|1-Check url DataType\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.url).to.be.a(\"string\");\r",
+									"});\r",
+									"pm.test(\"1-|2-Check Response Body includes ID\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"id\");\r",
+									"});\r",
+									"pm.test(\"2-|2-Check Response Body includes idBook\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"idBook\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"3-|2-Check Response Body includes url\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"url\");\r",
+									"});\r",
+									"pm.test(\"1-|3-Check ID not Null\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.id).to.not.eql(null);\r",
+									"    });\r",
+									" pm.test(\"2-|3-Check idBook not Null\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.idBook).to.not.eql(null);\r",
+									"    });\r",
+									"pm.test(\"3-|3-Check url not Null\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.url).to.not.eql(null);\r",
+									"    });\r",
+									"\r",
+									"pm.test(\"1-|4-Check ID value\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.id).to.eql(6);\r",
+									"    });\r",
+									" pm.test(\"2-|4-Check idBook value\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.idBook).to.eql(8);\r",
+									"    });\r",
+									"pm.test(\"3-|4-Check url value\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.url).to.eql(\"https://placeholdit.imgix.net/~text?txtsize=33&txt=Book 3&w=250&h=350\");\r",
+									"    });"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 6,\r\n  \"idBook\": 8,\r\n  \"url\": \"https://placeholdit.imgix.net/~text?txtsize=33&txt=Book 3&w=250&h=350\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/CoverPhotos/6",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"CoverPhotos",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get CoverPhoto with Bookid",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Response time is less than 3000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"1-|1-Check ID DataType\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0].id).to.be.a(\"number\");\r",
+									"});\r",
+									"pm.test(\"2-|1-Check idBook DataType\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0].idBook).to.be.a(\"number\");\r",
+									"});\r",
+									"pm.test(\"3-|1-Check url DataType\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0].url).to.be.a(\"string\");\r",
+									"});\r",
+									"pm.test(\"1-|2-Check Response Body includes ID\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0]).to.have.property(\"id\");\r",
+									"});\r",
+									"pm.test(\"2-|2-Check Response Body includes idBook\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0]).to.have.property(\"idBook\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"3-|2-Check Response Body includes url\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0]).to.have.property(\"url\");\r",
+									"});\r",
+									"pm.test(\"1-|3-Check ID not Null\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.id).to.not.eql(null);\r",
+									"    });\r",
+									" pm.test(\"2-|3-Check idBook not Null\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.idBook).to.not.eql(null);\r",
+									"    });\r",
+									"pm.test(\"3-|3-Check url not Null\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.url).to.not.eql(null);\r",
+									"    });\r",
+									"\r",
+									"pm.test(\"1-|4-Check ID value\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData[0].id).to.eql(7);\r",
+									"    });\r",
+									" pm.test(\"2-|4-Check idBook value\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData[0].idBook).to.eql(7);\r",
+									"    });\r",
+									"pm.test(\"3-|4-Check url value\", function () {\r",
+									"        var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData[0].url).to.eql(\"https://placeholdit.imgix.net/~text?txtsize=33&txt=Book 7&w=250&h=350\");\r",
+									"    });\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}​/api/v1/CoverPhotos/books/covers/7",
+							"host": [
+								"{{baseUrl}}​"
+							],
+							"path": [
+								"api",
+								"v1",
+								"CoverPhotos",
+								"books",
+								"covers",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete CoverPhoto",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is less than 3000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}​/api/v1/CoverPhotos/1",
+							"host": [
+								"{{baseUrl}}​"
+							],
+							"path": [
+								"api",
+								"v1",
+								"CoverPhotos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
